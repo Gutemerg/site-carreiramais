@@ -306,3 +306,11 @@ details .ans{padding:0 18px 16px;color:var(--g700)}
   .hero-bg .bg .media img{object-position:50% 20%}
   .hero-bg .bg::after{background:linear-gradient(90deg,rgba(30,3,8,1) 0%,rgba(30,3,8,1) 43%,rgba(60,6,15,.6) 58%,rgba(78,7,19,.05) 85%)}
 }
+/* Celular: um card por linha (preferência do Júnior) */
+@media (max-width:639px){
+  .grid.cards{grid-template-columns:1fr;gap:18px}
+  .ccard .media{aspect-ratio:16/10}
+  .ccard h3{font-size:1.1rem}
+  .ccard .foot .btn{width:auto}
+}
+@media (min-width:640px) and (max-width:979px){.grid.cards{grid-template-columns:repeat(2,1fr)}}
