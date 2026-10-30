@@ -380,7 +380,7 @@ pages['/unidades/'] = layout({
   schema: [orgSchema, crumbsSchema([['Início', '/'], ['Unidades', '/unidades/']])],
   body: `
 <section class="phero">
-  <div class="bg">${media(['unidades-hero', 'unidade-campo-grande-rj', 'unidade-nova-iguacu'], { icon: 'pin', sizes: '100vw', eager: true })}</div>
+  <div class="bg">${media(['unidades-hero', 'unidade-campo-grande-rj', 'unidade-nova-iguacu', 'cursos-hero'], { icon: 'pin', sizes: '100vw', eager: true })}</div>
   <div class="wrap">${crumbsHtml([['Início', '/'], ['Unidades', '/unidades/']])}<h1>Nossas unidades</h1><p class="lead">Estamos no Rio de Janeiro, em Nova Iguaçu e em Campo Grande, com aulas presenciais e práticas.</p></div>
 </section>
 <section class="section"><div class="wrap"><div class="grid c2">${units.map(u => unitCard(u, 'unidades')).join('')}</div></div></section>
