@@ -77,7 +77,7 @@
       (!nome ? form.nome : !form.curso.value ? form.curso : form.unidade).focus();
       return;
     }
-    var msg = 'Olá! Meu nome é ' + nome + '. Quero fazer a matrícula no curso de ' + c.dataset.name + ' na unidade ' + u.dataset.name + '. Pode me passar as próximas turmas e valores?';
+    var msg = 'Olá! Meu nome é ' + nome + '. Quero fazer a matrícula no curso de ' + c.dataset.name + ' na unidade ' + u.dataset.name + '. Vi que a matrícula é grátis. Pode me passar as próximas turmas e valores?';
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'matricula_whatsapp', course: form.curso.value, unit: form.unidade.value });
     window.open('https://wa.me/' + u.dataset.wa + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');

@@ -73,9 +73,15 @@ const I = {
   phone: '<path d="M21 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 4.2 2 2 0 0 1 3.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2Z"/>',
   calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  tag: '<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
 };
 const icon = (n, cls = '') => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
 const waIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3ZM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>';
+
+// Oferta central (site.json → site.offer) — troque/desligue em um só lugar
+const OFFER = site.offer && site.offer.active ? site.offer : null;
+const offerBadge = () => OFFER ? `<span class="offer-badge">${icon('tag')} ${esc(OFFER.short)}</span>` : '';
+const offerNote = () => OFFER ? `<div class="offer-note">${icon('tag')}<div><strong>${esc(OFFER.short)}</strong><span>Pague a 1ª parcela só depois do início das aulas.</span></div></div>` : '';
 
 // ---------- layout ----------
 function layout({ path, title, description, body, schema = [], sticky = '' }) {
@@ -106,6 +112,7 @@ ${ld}
 </head>
 <body class="${sticky ? 'has-sticky' : ''}">
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+${OFFER ? `<div class="offer-bar"><a href="/matricula/">${icon('tag')} ${esc(OFFER.bar)}</a></div>` : ''}
 <header class="header">
   <div class="wrap">
     <a class="logo" href="/" aria-label="Carreira+ — página inicial"><img src="/logo-claro.webp" alt="Instituto Profissionalizante Carreira+" width="154" height="42"></a>
@@ -164,7 +171,7 @@ const AREAS = [...new Set(courses.map(c => c.area))];
 function courseCard(c, origin = 'card') {
   const price = c.price
     ? `<span class="from">A partir de</span><span class="price">${esc(c.price)}</span>`
-    : `<span class="from">Valores e turmas</span><span class="price small-price">no WhatsApp</span>`;
+    : OFFER ? `<span class="from">Condição especial</span><span class="price small-price">${esc(OFFER.short)}</span>` : `<span class="from">Valores e turmas</span><span class="price small-price">no WhatsApp</span>`;
   return `<article class="ccard reveal" data-area="${esc(c.area)}">
     ${media([`curso-${c.slug}`], { icon: c.icon, sizes: '(min-width: 980px) 25vw, 50vw' })}
     <div class="body">
@@ -209,7 +216,7 @@ function unitMini(u) {
 function ctaBand(course, origin) {
   return `<section class="cta-band"><div class="wrap">
     <h2>${course ? 'Garanta sua vaga na próxima turma' : 'Seu próximo passo começa aqui'}</h2>
-    <p>${course ? `Fale com a gente e receba datas, duração e valores do curso de ${esc(course.shortName)}.` : 'Escolha seu curso e fale com a gente. Passamos as próximas turmas, horários e valores.'}</p>
+    <p>${course ? `Fale com a gente e receba datas, duração e valores do curso de ${esc(course.shortName)}.` : (OFFER ? OFFER.long + ' ' : '') + 'Escolha seu curso e fale com a gente.'}</p>
     <div class="actions"><a class="btn btn-light" href="/matricula/${course ? `?curso=${course.slug}` : ''}">Matricule-se agora</a><a class="btn btn-dark" ${wa(course, null, origin)}>${waIcon} Fale no WhatsApp</a></div>
   </div></section>`;
 }
@@ -227,6 +234,7 @@ pages['/'] = layout({
   <div class="bg">${media(['home-hero'], { icon: 'cap', sizes: '100vw', eager: true })}</div>
   <div class="wrap">
     <div class="copy">
+      ${offerBadge()}
       <h1>Transforme seu futuro com <mark>cursos profissionalizantes</mark></h1>
       <p class="lead">Formação prática, presencial e com foco no mercado de trabalho. Venha para a Carreira+ e conquiste novas oportunidades.</p>
       <div class="actions">
@@ -292,6 +300,7 @@ for (const c of courses) {
     ['O curso é presencial ou online?', 'É presencial. As aulas acontecem na unidade, com atividades práticas em sala.'],
     ['Em qual unidade posso fazer?', 'Temos unidades em Nova Iguaçu e em Campo Grande (RJ). Fale com a unidade mais perto de você para saber as turmas disponíveis.'],
     ['Qual a duração e o valor?', 'Duração, horários e valores variam conforme a turma. Fale com a gente pelo WhatsApp e passamos as informações atualizadas.'],
+    ...(OFFER ? [['Preciso pagar a matrícula?', 'Não. A matrícula é grátis, e você só paga a 1ª parcela depois que as aulas começarem.']] : []),
     ['Preciso ter conhecimento prévio?', 'Não. O curso começa pelos fundamentos e avança para a prática.'],
     ['Como faço a matrícula?', 'Preencha a página de matrícula ou chame no WhatsApp da unidade. O atendimento explica o passo a passo.'],
   ];
@@ -322,6 +331,7 @@ for (const c of courses) {
     <div class="cta-box">
       <div class="label">Próximas turmas e valores</div>
       <div class="big">Consulte as condições da sua unidade</div>
+      ${offerNote()}
       <a class="btn btn-primary btn-block" href="/matricula/?curso=${c.slug}">Matricule-se agora ${icon('arrow')}</a>
       <a class="btn btn-dark btn-block" ${wa(c, null, 'curso-box')}>${waIcon} Fale no WhatsApp</a>
     </div>
@@ -439,7 +449,8 @@ pages['/matricula/'] = layout({
     </form>
     <div>
       <div class="form-card" style="margin-bottom:18px">
-        <h3>Como funciona</h3>
+        ${offerNote()}
+        <h3 style="margin-top:14px">Como funciona</h3>
         <ul class="checklist"><li>Você escolhe o curso e a unidade.</li><li>Nossa equipe responde no WhatsApp com datas, horários e valores.</li><li>A matrícula é concluída com o atendimento da unidade.</li></ul>
       </div>
       <div class="form-card">

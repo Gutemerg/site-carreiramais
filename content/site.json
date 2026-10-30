@@ -6,7 +6,13 @@
     "domain": "https://carreiramais.com.br",
     "instagram": "carreiramais.oficial",
     "whatsappDefault": "5521990904229",
-    "description": "Cursos profissionalizantes presenciais em Nova Iguaçu e Campo Grande (RJ). Aulas práticas em saúde, educação, perícia, estética e segurança patrimonial."
+    "description": "Cursos profissionalizantes presenciais em Nova Iguaçu e Campo Grande (RJ). Aulas práticas em saúde, educação, perícia, estética e segurança patrimonial.",
+    "offer": {
+      "active": true,
+      "short": "Matrícula grátis",
+      "long": "Matrícula grátis. Você só paga a 1ª parcela depois que as aulas começarem.",
+      "bar": "Matrícula grátis — pague a 1ª parcela só depois do início das aulas"
+    }
   },
   "units": [
     {
@@ -30,7 +36,9 @@
       "whatsapp": "5521975510326",
       "address": null,
       "hours": null,
-      "notes": ["A unidade de Campo Grande não abre às quartas-feiras."]
+      "notes": [
+        "A unidade de Campo Grande não abre às quartas-feiras."
+      ]
     }
   ],
   "courses": [
