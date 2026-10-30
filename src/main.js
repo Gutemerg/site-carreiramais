@@ -10,7 +10,14 @@
   }
 
   // Revela blocos ao rolar (respeita prefers-reduced-motion via CSS)
+  // Marca blocos para animar ao rolar e cria efeito cascata entre irmãos
+  document.querySelectorAll('.section-head, .section h2, .icon-strip > div, .units-band h2, .faq details, details, .checklist li, .practice-list > div, .about > *, .cta-band .wrap > *').forEach(function (el) { el.classList.add('reveal'); });
   var els = document.querySelectorAll('.reveal');
+  els.forEach(function (el) {
+    var sibs = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function (c) { return c.classList.contains('reveal'); }) : [];
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.setProperty('--d', Math.min(i * 0.08, 0.48) + 's');
+  });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

@@ -331,3 +331,55 @@ details .ans{padding:0 18px 16px;color:var(--g700)}
   .highlights .hl + .hl{border-top:0;border-left:1px solid var(--g100)}
 }
 .hero-bg .copy{padding-bottom:64px}
+
+/* ===== Motion ===== */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.28s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes markIn{from{background-size:0% 100%}to{background-size:100% 100%}}
+@keyframes kenburns{from{transform:scale(1.08)}to{transform:scale(1)}}
+@keyframes cardUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes shine{from{left:-60%}to{left:130%}}
+
+/* Hero: entrada em sequência */
+.hero .copy>*,.phero .wrap>*{animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both}
+.hero .copy>*:nth-child(1),.phero .wrap>*:nth-child(1){animation-delay:.05s}
+.hero .copy>*:nth-child(2),.phero .wrap>*:nth-child(2){animation-delay:.18s}
+.hero .copy>*:nth-child(3),.phero .wrap>*:nth-child(3){animation-delay:.3s}
+.hero .copy>*:nth-child(4),.phero .wrap>*:nth-child(4){animation-delay:.42s}
+/* destaque vermelho que "se desenha" */
+.hero h1 mark{background:linear-gradient(var(--red),var(--red)) no-repeat left/0% 100%;animation:markIn .8s .55s cubic-bezier(.65,0,.35,1) forwards}
+/* zoom lento na foto de fundo */
+.hero-bg .bg img,.phero .bg img{animation:kenburns 9s ease-out both}
+/* cartão de destaques sobe logo depois */
+.hl-card{animation:cardUp .7s .5s cubic-bezier(.2,.7,.2,1) both}
+
+/* Revelar ao rolar, com cascata (delay definido no JS) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* Hover: zoom na foto do card */
+.ccard .media img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.ccard:hover .media img{transform:scale(1.06)}
+.umini .media img{transition:transform .5s ease}
+.umini:hover .media img{transform:scale(1.08)}
+.icon-strip svg,.highlights .hl svg{transition:transform .3s ease}
+.icon-strip div:hover svg,.highlights .hl:hover svg{transform:translateY(-3px) scale(1.06)}
+
+/* Brilho que passa nos botões principais */
+.btn-primary,.btn-red{position:relative;overflow:hidden}
+.btn-primary::after,.btn-red::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);pointer-events:none}
+.btn-primary:hover::after,.btn-red:hover::after{animation:shine .7s ease}
+.btn svg{transition:transform .2s ease}
+.btn:hover svg{transform:translateX(3px)}
+.wa-float{transition:transform .2s ease}
+.wa-float:hover{transform:scale(1.08)}
+
+/* Acessibilidade: sem movimento para quem desativa animações */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .hero h1 mark{background-size:100% 100%}
+  @view-transition{navigation:none}
+}
