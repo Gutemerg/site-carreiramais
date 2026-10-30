@@ -314,3 +314,20 @@ details .ans{padding:0 18px 16px;color:var(--g700)}
   .ccard .foot .btn{width:auto}
 }
 @media (min-width:640px) and (max-width:979px){.grid.cards{grid-template-columns:repeat(2,1fr)}}
+
+/* Destaques v4: cartão branco sobre o hero, ícone ao lado do texto */
+.highlights{background:transparent;border:0;position:relative;z-index:5;margin-top:-34px;padding-bottom:6px}
+.highlights .wrap{display:block}
+.hl-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);display:grid;grid-template-columns:1fr;padding:6px 18px}
+.highlights .hl{flex-direction:row;align-items:center;text-align:left;gap:14px;padding:14px 0;border:0}
+.highlights .hl + .hl{border-left:0;border-top:1px solid var(--g100)}
+.highlights .hl svg{width:26px;height:26px;flex:none;color:var(--red);background:#FBEAED;border-radius:50%;padding:9px;box-sizing:content-box}
+.highlights .hl div{display:flex;flex-direction:column;line-height:1.3}
+.highlights .hl strong{font-size:1rem;font-weight:700;color:var(--ink)}
+.highlights .hl span{font-size:.86rem;color:var(--g500)}
+@media (min-width:900px){
+  .hl-card{grid-template-columns:repeat(4,1fr);padding:8px 10px}
+  .highlights .hl{padding:18px 16px}
+  .highlights .hl + .hl{border-top:0;border-left:1px solid var(--g100)}
+}
+.hero-bg .copy{padding-bottom:64px}

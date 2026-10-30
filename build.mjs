@@ -190,13 +190,13 @@ function unitCard(u, origin) {
   </article>`;
 }
 
-// Só números reais (nada de nº de alunos ou satisfação inventados)
-const highlights = `<section class="highlights" aria-label="Destaques"><div class="wrap">
-  <div class="hl">${icon('cap')}<strong class="num">${courses.length}</strong><span>cursos disponíveis</span></div>
-  <div class="hl">${icon('pin')}<strong class="num">${units.length}</strong><span>unidades no RJ</span></div>
-  <div class="hl">${icon('users')}<strong class="num">100%</strong><span>presencial</span></div>
-  <div class="hl">${icon('tool')}<strong class="num">Prática</strong><span>em todas as turmas</span></div>
-</div></section>`;
+// Destaques em texto (sem números), conforme pedido do Júnior
+const highlights = `<section class="highlights" aria-label="Destaques"><div class="wrap"><div class="hl-card">
+  <div class="hl">${icon('cap')}<div><strong>Diversos cursos</strong><span>Saúde, educação, perícia e mais</span></div></div>
+  <div class="hl">${icon('pin')}<div><strong>Campo Grande e Nova Iguaçu</strong><span>Unidades no Rio de Janeiro</span></div></div>
+  <div class="hl">${icon('users')}<div><strong>100% presencial</strong><span>Aulas em sala, com professor</span></div></div>
+  <div class="hl">${icon('tool')}<div><strong>Aulas práticas</strong><span>Você aprende fazendo</span></div></div>
+</div></div></section>`;
 
 const REGION = { 'campo-grande-rj': 'Zona Oeste – Rio de Janeiro', 'nova-iguacu': 'Baixada Fluminense' };
 function unitMini(u) {
@@ -245,7 +245,7 @@ ${highlights}
     <div class="icon-strip" id="sobre">
       <div>${icon('tool')}<span>Aulas práticas e presenciais</span></div>
       <div>${icon('chat')}<span>Atendimento humanizado</span></div>
-      <div>${icon('pin')}<span>2 unidades no Rio de Janeiro</span></div>
+      <div>${icon('calendar')}<span>Matrícula fácil pelo WhatsApp</span></div>
       <div>${icon('cap')}<span>Foco no mercado de trabalho</span></div>
     </div>
   </div>
