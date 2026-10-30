@@ -1,0 +1,248 @@
+{
+  "site": {
+    "name": "Carreira+",
+    "legalName": "Instituto Profissionalizante Carreira Mais",
+    "displayName": "Instituto Profissionalizante Carreira+",
+    "domain": "https://carreiramais.com.br",
+    "instagram": "carreiramais.oficial",
+    "whatsappDefault": "5521990904229",
+    "description": "Cursos profissionalizantes presenciais em Nova Iguaçu e Campo Grande (RJ). Aulas práticas em saúde, educação, perícia, estética e segurança patrimonial."
+  },
+  "units": [
+    {
+      "id": "nova-iguacu",
+      "name": "Nova Iguaçu",
+      "label": "Nova Iguaçu – RJ",
+      "city": "Nova Iguaçu",
+      "state": "RJ",
+      "whatsapp": "5521990904229",
+      "address": null,
+      "hours": null,
+      "notes": []
+    },
+    {
+      "id": "campo-grande-rj",
+      "name": "Campo Grande",
+      "label": "Campo Grande – Rio de Janeiro/RJ",
+      "city": "Rio de Janeiro",
+      "district": "Campo Grande",
+      "state": "RJ",
+      "whatsapp": "5521975510326",
+      "address": null,
+      "hours": null,
+      "notes": ["A unidade de Campo Grande não abre às quartas-feiras."]
+    }
+  ],
+  "courses": [
+    {
+      "slug": "tecnicas-de-pericia-e-ciencias-forenses",
+      "name": "Técnicas de Perícia e Ciências Forenses",
+      "shortName": "Perícia e Ciências Forenses",
+      "area": "Perícia",
+      "icon": "fingerprint",
+      "hero": "Aprenda as técnicas usadas na análise de vestígios, identificação e documentos, com aulas práticas presenciais.",
+      "about": "Um curso livre presencial para quem quer conhecer, na prática, como funciona o trabalho pericial: da coleta e análise de vestígios à identificação humana e ao exame de documentos. A perícia atua em diversas áreas, e o curso apresenta as principais técnicas de forma aplicada.",
+      "learn": [
+        "Fundamentos das Ciências Forenses",
+        "Análise de local e preservação de vestígios",
+        "Interpretação de manchas de sangue",
+        "Exame externo",
+        "Papiloscopia e identificação datiloscópica",
+        "Técnica dos 12 pontos de identificação",
+        "Noções de toxicologia",
+        "Grafotécnica (análise de escrita e documentos)",
+        "Noções de balística"
+      ],
+      "practice": [
+        "Coleta e revelação de impressões digitais",
+        "Análise de vestígios em atividades simuladas",
+        "Exercícios de grafotécnica com documentos",
+        "Aula prática em stand de tiro, com demonstração do efeito balístico em diferentes materiais (o aluno não realiza disparos)"
+      ],
+      "audience": [
+        "Quem tem interesse pela área pericial e quer entender como ela funciona na prática",
+        "Estudantes e profissionais que querem complementar a formação",
+        "Quem busca conhecimento técnico para atuar como assistente técnico ou em áreas correlatas"
+      ],
+      "career": [
+        "Apoio técnico em escritórios e empresas que trabalham com perícia",
+        "Assistência técnica em processos, conforme a área de atuação",
+        "Base de conhecimento para quem deseja seguir estudando na área forense"
+      ],
+      "seoTitle": "Curso de Perícia e Ciências Forenses presencial em Nova Iguaçu e Campo Grande RJ",
+      "seoDescription": "Curso presencial de Técnicas de Perícia e Ciências Forenses com aulas práticas: papiloscopia, grafotécnica, vestígios e balística. Unidades em Nova Iguaçu e Campo Grande (RJ)."
+    },
+    {
+      "slug": "necropsia-tanatopraxia-necromaquiagem",
+      "name": "Técnicas de Necropsia + Tanatopraxia + Necromaquiagem",
+      "shortName": "Necropsia, Tanatopraxia e Necromaquiagem",
+      "area": "Funerária e Necropsia",
+      "icon": "flask",
+      "hero": "Formação 3 em 1, presencial e prática, para atuar com técnica, ética e respeito no cuidado pós-morte.",
+      "about": "Três formações integradas em um só curso: as técnicas de auxílio à necropsia, a tanatopraxia (preparação e conservação do corpo) e a necromaquiagem (preparação estética para a despedida). Uma área que exige conhecimento técnico, biossegurança e muito respeito à dignidade humana e às famílias.",
+      "learn": [
+        "Anatomia aplicada",
+        "Biossegurança e uso correto de EPIs",
+        "Técnicas de auxílio à necropsia",
+        "Tanatopraxia: preparação e conservação",
+        "Necromaquiagem e reconstituição estética",
+        "Ética, postura profissional e acolhimento às famílias"
+      ],
+      "practice": [
+        "Aulas práticas com materiais e instrumentos da área",
+        "Treino de procedimentos de tanatopraxia e necromaquiagem",
+        "Prática no IML"
+      ],
+      "audience": [
+        "Quem quer ingressar no setor funerário",
+        "Profissionais de funerárias que querem se qualificar",
+        "Pessoas da área da saúde que querem ampliar a atuação"
+      ],
+      "career": [
+        "Funerárias e empresas de serviços póstumos",
+        "Apoio técnico em procedimentos de preparação do corpo",
+        "Atuação autônoma em tanatopraxia e necromaquiagem"
+      ],
+      "seoTitle": "Curso de Necropsia, Tanatopraxia e Necromaquiagem presencial no RJ",
+      "seoDescription": "Formação 3 em 1 presencial em Técnicas de Necropsia, Tanatopraxia e Necromaquiagem, com aulas práticas. Unidades em Nova Iguaçu e Campo Grande (RJ)."
+    },
+    {
+      "slug": "massoterapia-profissional",
+      "name": "Massoterapia Profissional",
+      "shortName": "Massoterapia",
+      "area": "Estética e Bem-estar",
+      "icon": "hands",
+      "hero": "Aprenda as principais técnicas de massagem na prática e comece a atender com segurança.",
+      "about": "Um curso presencial focado no atendimento: você aprende as técnicas mais procuradas pelos clientes, praticando em aula, com orientação sobre postura, anamnese e cuidados com cada tipo de atendimento.",
+      "learn": [
+        "Massagem relaxante",
+        "Massagem desportiva",
+        "Drenagem linfática",
+        "Quick massage",
+        "Ventosaterapia",
+        "Argiloterapia",
+        "Massagem modeladora",
+        "Uso de manta térmica"
+      ],
+      "practice": [
+        "Prática das técnicas em aula, entre os alunos",
+        "Montagem e organização do ambiente de atendimento",
+        "Postura e ergonomia do massoterapeuta"
+      ],
+      "audience": [
+        "Quem quer trabalhar com bem-estar e atendimento",
+        "Profissionais de estética que querem ampliar os serviços",
+        "Quem busca uma profissão com possibilidade de atendimento autônomo"
+      ],
+      "career": [
+        "Atendimento autônomo, em domicílio ou em espaço próprio",
+        "Clínicas de estética, spas e salões",
+        "Academias, clubes e eventos (quick massage)"
+      ],
+      "seoTitle": "Curso de Massoterapia presencial em Nova Iguaçu e Campo Grande RJ",
+      "seoDescription": "Curso presencial de Massoterapia Profissional: relaxante, desportiva, drenagem, quick massage, ventosas e mais. Aulas práticas em Nova Iguaçu e Campo Grande (RJ)."
+    },
+    {
+      "slug": "auxiliar-de-creche-mediacao-escolar-tea",
+      "name": "Auxiliar de Creche + Mediação Escolar + TEA",
+      "shortName": "Auxiliar de Creche, Mediação Escolar e TEA",
+      "area": "Educação",
+      "icon": "blocks",
+      "hero": "Três formações integradas para trabalhar com crianças em creches e escolas, incluindo o apoio a alunos com autismo.",
+      "about": "O curso reúne três pilares: a rotina e os cuidados na creche, a mediação escolar (acompanhamento do aluno em sala) e o atendimento a crianças com Transtorno do Espectro Autista (TEA). Uma formação completa para quem quer atuar na educação com preparo e sensibilidade.",
+      "learn": [
+        "Desenvolvimento infantil",
+        "Rotina, cuidados e segurança na creche",
+        "Papel e atuação do mediador escolar",
+        "Transtorno do Espectro Autista (TEA): conceitos e características",
+        "Estratégias de inclusão em sala de aula",
+        "Comunicação com a família e a equipe escolar"
+      ],
+      "practice": [
+        "Simulações de situações do dia a dia escolar",
+        "Atividades lúdicas e estratégias de mediação",
+        "Estudos de caso"
+      ],
+      "audience": [
+        "Quem quer trabalhar em creches e escolas",
+        "Familiares que querem entender e apoiar crianças com TEA",
+        "Profissionais da educação que querem se especializar em inclusão"
+      ],
+      "career": [
+        "Creches e escolas de educação infantil",
+        "Mediação escolar em escolas públicas e particulares",
+        "Acompanhamento de crianças com TEA"
+      ],
+      "seoTitle": "Curso de Auxiliar de Creche, Mediação Escolar e TEA presencial no RJ",
+      "seoDescription": "Curso presencial 3 em 1: Auxiliar de Creche, Mediação Escolar e TEA (autismo). Formação prática em Nova Iguaçu e Campo Grande (RJ)."
+    },
+    {
+      "slug": "cuidador-de-idosos-acompanhante-hospitalar",
+      "name": "Cuidador de Idosos + Acompanhante Hospitalar",
+      "shortName": "Cuidador de Idosos e Acompanhante Hospitalar",
+      "area": "Saúde",
+      "icon": "heart",
+      "hero": "Aprenda a cuidar de idosos e pacientes com segurança, técnica e carinho, em casa ou no hospital.",
+      "about": "Uma formação presencial para quem quer trabalhar com cuidado: rotina do idoso, higiene, alimentação, mobilidade e o acompanhamento de pacientes em ambiente hospitalar, sempre com atenção ao bem-estar e à dignidade da pessoa.",
+      "learn": [
+        "Envelhecimento e principais necessidades do idoso",
+        "Higiene e conforto",
+        "Alimentação e hidratação",
+        "Mobilidade, transferência e prevenção de quedas",
+        "Primeiros socorros",
+        "Rotina e postura do acompanhante hospitalar"
+      ],
+      "practice": [
+        "Treino de técnicas de higiene e transferência",
+        "Simulações de primeiros socorros",
+        "Organização da rotina de cuidados"
+      ],
+      "audience": [
+        "Quem quer trabalhar como cuidador ou acompanhante",
+        "Familiares que cuidam de idosos",
+        "Quem busca uma área com procura constante"
+      ],
+      "career": [
+        "Cuidado domiciliar de idosos",
+        "Acompanhamento de pacientes em hospitais",
+        "Casas de repouso e residências para idosos"
+      ],
+      "seoTitle": "Curso de Cuidador de Idosos e Acompanhante Hospitalar presencial no RJ",
+      "seoDescription": "Curso presencial de Cuidador de Idosos e Acompanhante Hospitalar com aulas práticas. Unidades em Nova Iguaçu e Campo Grande (RJ)."
+    },
+    {
+      "slug": "agente-de-portaria-controlador-de-acesso",
+      "name": "Agente de Portaria / Controlador de Acesso",
+      "shortName": "Agente de Portaria",
+      "area": "Segurança Patrimonial",
+      "icon": "shield",
+      "hero": "Prepare-se para atuar em portarias de condomínios, empresas e eventos com postura e procedimentos corretos.",
+      "about": "Um curso presencial e direto ao ponto para quem quer trabalhar com portaria e controle de acesso: atendimento, procedimentos de entrada e saída, comunicação e conduta em situações do dia a dia.",
+      "learn": [
+        "Atribuições do porteiro e do controlador de acesso",
+        "Atendimento ao público e postura profissional",
+        "Procedimentos de controle de entrada e saída",
+        "Recebimento de correspondências e encomendas",
+        "Comunicação por rádio e registros",
+        "Conduta em situações de emergência"
+      ],
+      "practice": [
+        "Simulações de atendimento e controle de acesso",
+        "Preenchimento de registros e livro de ocorrências",
+        "Exercícios de comunicação"
+      ],
+      "audience": [
+        "Quem quer entrar rápido no mercado de trabalho",
+        "Quem já trabalha em portaria e quer se qualificar",
+        "Quem busca uma primeira profissão"
+      ],
+      "career": [
+        "Condomínios residenciais e comerciais",
+        "Empresas, indústrias e shoppings",
+        "Eventos e controle de acesso"
+      ],
+      "seoTitle": "Curso de Agente de Portaria e Controlador de Acesso presencial no RJ",
+      "seoDescription": "Curso presencial de Agente de Portaria / Controlador de Acesso. Aulas práticas em Nova Iguaçu e Campo Grande (RJ)."
+    }
+  ]
+}
