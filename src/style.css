@@ -243,3 +243,66 @@ details .ans{padding:0 18px 16px;color:var(--g700)}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.btn,.ccard{transition:none}}
 .grid>*{min-width:0}
 .field input,.field select{width:100%;max-width:100%}
+
+/* ===== v3 — fiel à referência ===== */
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#A80016}
+.btn-dark{background:#151214;color:#fff;border-color:rgba(255,255,255,.18)}
+.btn-dark:hover{background:#000}
+
+/* Hero com foto de fundo e sombra vinho escura à esquerda */
+.hero-bg{background:var(--wine-deep);min-height:520px;display:flex;align-items:center}
+.hero-bg .bg{position:absolute;inset:0}
+.hero-bg .bg .media{position:absolute;inset:0;background:var(--wine-deep)}
+.hero-bg .bg img{object-position:70% 25%}
+.hero-bg .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,3,8,.96) 0%,rgba(46,4,11,.88) 38%,rgba(78,7,19,.35) 70%,rgba(78,7,19,.05) 100%)}
+.hero-bg .wrap{position:relative;z-index:2;display:block;width:100%}
+.hero-bg .copy{max-width:600px;padding:72px 0}
+.hero-bg h1{font-size:clamp(2.3rem,6.4vw,3.9rem)}
+@media (max-width:899px){
+  .hero-bg{min-height:0;align-items:flex-end}
+  .hero-bg .bg::after{background:linear-gradient(180deg,rgba(30,3,8,.35) 0%,rgba(30,3,8,.85) 45%,rgba(30,3,8,.97) 100%)}
+  .hero-bg .copy{padding:200px 0 40px}
+  .hero-bg .bg img{object-position:65% 20%}
+}
+
+/* Faixa de números */
+.highlights .hl{padding:24px 10px}
+.highlights .hl svg{width:30px;height:30px;color:var(--wine)}
+.highlights .hl .num{font-size:1.9rem;font-weight:800;line-height:1.1;color:var(--ink)}
+.highlights .hl span{font-size:.86rem;color:var(--g500)}
+
+/* Cards de curso: 2 por linha no celular */
+.grid.cards{grid-template-columns:repeat(2,1fr);gap:14px}
+@media (min-width:980px){.grid.cards{grid-template-columns:repeat(3,1fr);gap:22px}}
+.ccard .media{aspect-ratio:16/10}
+.ccard .body{padding:14px 14px 16px}
+.ccard h3{margin:0 0 12px;font-size:1.02rem;line-height:1.25}
+.ccard .foot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pricebox{display:flex;flex-direction:column;line-height:1.15}
+.pricebox .from{font-size:.74rem;color:var(--g500)}
+.pricebox .price{font-size:1.25rem;font-weight:800;color:var(--wine)}
+.pricebox .small-price{font-size:.95rem}
+.ccard .foot .btn{min-height:38px;padding:0 12px;font-size:.84rem}
+@media (max-width:520px){.ccard h3{font-size:.92rem}.ccard .foot .btn{width:100%}.ccard .media{aspect-ratio:4/3}}
+
+/* Linha de ícones */
+.icon-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 10px;margin-top:40px;padding-top:30px;border-top:1px solid var(--g200)}
+@media (min-width:760px){.icon-strip{grid-template-columns:repeat(4,1fr)}}
+.icon-strip div{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;font-size:.88rem;font-weight:600;color:var(--g700)}
+.icon-strip svg{width:34px;height:34px;color:var(--wine)}
+
+/* Faixa vinho das unidades */
+.units-band{background:linear-gradient(180deg,var(--wine) 0%,var(--wine-deep) 100%);padding:48px 0}
+.units-band h2{color:#fff;margin-bottom:22px}
+.umini{display:flex;gap:14px;align-items:center;background:#fff;border-radius:var(--radius);padding:12px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-lg);transition:transform .15s ease}
+.umini:hover{transform:translateY(-2px)}
+.umini .media{width:120px;height:90px;flex:none;border-radius:8px}
+.umini strong{display:block;font-size:1.08rem}
+.umini span{display:block;font-size:.86rem;color:var(--g500)}
+.umini em{display:block;font-style:normal;font-weight:700;color:var(--wine);font-size:.88rem;margin-top:6px}
+@media (min-width:900px){
+  .hero-bg .bg .media{left:42%}
+  .hero-bg .bg .media img{object-position:50% 20%}
+  .hero-bg .bg::after{background:linear-gradient(90deg,rgba(30,3,8,1) 0%,rgba(30,3,8,1) 43%,rgba(60,6,15,.6) 58%,rgba(78,7,19,.05) 85%)}
+}

@@ -114,6 +114,8 @@ ${ld}
       <a href="/">Início</a>
       <a href="/cursos/">Cursos</a>
       <a href="/unidades/">Unidades</a>
+      <a href="/#sobre">Sobre</a>
+      <a href="/contato/">Contato</a>
       <a class="btn btn-primary btn-sm" href="/matricula/">Matricule-se</a>
     </nav>
   </div>
@@ -160,13 +162,14 @@ const crumbsHtml = items => `<nav class="crumbs" aria-label="Você está em">${i
 
 const AREAS = [...new Set(courses.map(c => c.area))];
 function courseCard(c, origin = 'card') {
+  const price = c.price
+    ? `<span class="from">A partir de</span><span class="price">${esc(c.price)}</span>`
+    : `<span class="from">Valores e turmas</span><span class="price small-price">no WhatsApp</span>`;
   return `<article class="ccard reveal" data-area="${esc(c.area)}">
-    ${media([`curso-${c.slug}`], { icon: c.icon })}
+    ${media([`curso-${c.slug}`], { icon: c.icon, sizes: '(min-width: 980px) 25vw, 50vw' })}
     <div class="body">
-      <span class="area">${esc(c.area)}</span>
       <h3><a href="/cursos/${c.slug}/">${esc(c.name)}</a></h3>
-      <div class="meta"><span>${icon('pin')} Presencial</span><span>${icon('tool')} Aulas práticas</span></div>
-      <div class="foot"><a class="btn btn-primary btn-sm" href="/cursos/${c.slug}/">Saiba mais ${icon('arrow')}</a></div>
+      <div class="foot"><div class="pricebox">${price}</div><a class="btn btn-primary btn-sm" href="/cursos/${c.slug}/">Saiba mais ${icon('arrow')}</a></div>
     </div>
   </article>`;
 }
@@ -187,18 +190,27 @@ function unitCard(u, origin) {
   </article>`;
 }
 
+// Só números reais (nada de nº de alunos ou satisfação inventados)
 const highlights = `<section class="highlights" aria-label="Destaques"><div class="wrap">
-  <div class="hl">${icon('tool')}<strong>Aulas práticas</strong><span>Você treina as técnicas em sala</span></div>
-  <div class="hl">${icon('users')}<strong>100% presencial</strong><span>Professor e turma de perto</span></div>
-  <div class="hl">${icon('pin')}<strong>2 unidades no RJ</strong><span>Nova Iguaçu e Campo Grande</span></div>
-  <div class="hl">${icon('chat')}<strong>Atendimento rápido</strong><span>Tire dúvidas pelo WhatsApp</span></div>
+  <div class="hl">${icon('cap')}<strong class="num">${courses.length}</strong><span>cursos disponíveis</span></div>
+  <div class="hl">${icon('pin')}<strong class="num">${units.length}</strong><span>unidades no RJ</span></div>
+  <div class="hl">${icon('users')}<strong class="num">100%</strong><span>presencial</span></div>
+  <div class="hl">${icon('tool')}<strong class="num">Prática</strong><span>em todas as turmas</span></div>
 </div></section>`;
+
+const REGION = { 'campo-grande-rj': 'Zona Oeste – Rio de Janeiro', 'nova-iguacu': 'Baixada Fluminense' };
+function unitMini(u) {
+  return `<a class="umini reveal" href="/unidades/${u.id}/">
+    ${media([`unidade-${u.id}`], { icon: 'pin', sizes: '140px' })}
+    <div><strong>${esc(u.name)}</strong><span>${esc(REGION[u.id] || u.label)}</span><em>Ver unidade →</em></div>
+  </a>`;
+}
 
 function ctaBand(course, origin) {
   return `<section class="cta-band"><div class="wrap">
     <h2>${course ? 'Garanta sua vaga na próxima turma' : 'Seu próximo passo começa aqui'}</h2>
     <p>${course ? `Fale com a gente e receba datas, duração e valores do curso de ${esc(course.shortName)}.` : 'Escolha seu curso e fale com a gente. Passamos as próximas turmas, horários e valores.'}</p>
-    <div class="actions"><a class="btn btn-light" href="/matricula/${course ? `?curso=${course.slug}` : ''}">Matricule-se agora</a><a class="btn btn-wa" ${wa(course, null, origin)}>${waIcon} Fale no WhatsApp</a></div>
+    <div class="actions"><a class="btn btn-light" href="/matricula/${course ? `?curso=${course.slug}` : ''}">Matricule-se agora</a><a class="btn btn-dark" ${wa(course, null, origin)}>${waIcon} Fale no WhatsApp</a></div>
   </div></section>`;
 }
 
@@ -211,45 +223,38 @@ pages['/'] = layout({
   description: site.description,
   schema: [orgSchema],
   body: `
-<section class="hero">
+<section class="hero hero-bg">
+  <div class="bg">${media(['home-hero'], { icon: 'cap', sizes: '100vw', eager: true })}</div>
   <div class="wrap">
     <div class="copy">
-      <span class="eyebrow" style="color:#FFC9D1">Instituto Profissionalizante Carreira+</span>
       <h1>Transforme seu futuro com <mark>cursos profissionalizantes</mark></h1>
-      <p class="lead">Formação presencial com aulas práticas, em Nova Iguaçu e Campo Grande (RJ). Venha para a Carreira+ e prepare-se para novas oportunidades.</p>
+      <p class="lead">Formação prática, presencial e com foco no mercado de trabalho. Venha para a Carreira+ e conquiste novas oportunidades.</p>
       <div class="actions">
-        <a class="btn btn-light" href="/matricula/">Matricule-se agora ${icon('arrow')}</a>
-        <a class="btn btn-wa" ${wa(null, null, 'home-hero')}>${waIcon} Fale no WhatsApp</a>
+        <a class="btn btn-red" href="/matricula/">Matricule-se agora ${icon('arrow')}</a>
+        <a class="btn btn-dark" ${wa(null, null, 'home-hero')}>${waIcon} Fale no WhatsApp</a>
       </div>
     </div>
-    ${media(['home-hero', 'cursos-hero'], { icon: 'cap', sizes: '(min-width: 900px) 50vw, 100vw', eager: true, cls: 'photo' })}
   </div>
 </section>
 ${highlights}
 
 <section class="section" id="cursos">
   <div class="wrap">
-    <div class="section-head"><div><span class="eyebrow">Cursos</span><h2>Nossos cursos em destaque</h2></div><a class="more" href="/cursos/">Ver todos os cursos →</a></div>
-    <div class="grid c3">${courses.map(c => courseCard(c, 'home')).join('')}</div>
-  </div>
-</section>
-
-<section class="section gray">
-  <div class="wrap">
-    <div class="section-head"><div><span class="eyebrow">Por que a Carreira+</span><h2>Aprender de perto faz diferença</h2></div></div>
-    <div class="grid c4">
-      <div class="feat reveal"><div class="ico">${icon('tool')}</div><h3>Aulas práticas</h3><p>Você treina as técnicas durante o curso, não fica só na teoria.</p></div>
-      <div class="feat reveal"><div class="ico">${icon('users')}</div><h3>Presencial</h3><p>Aulas em sala, com professor e turma, para tirar dúvidas na hora.</p></div>
-      <div class="feat reveal"><div class="ico">${icon('pin')}</div><h3>Perto de você</h3><p>Unidades em Nova Iguaçu e em Campo Grande, Zona Oeste do Rio.</p></div>
-      <div class="feat reveal"><div class="ico">${icon('chat')}</div><h3>Atendimento humano</h3><p>Uma pessoa da nossa equipe responde suas dúvidas pelo WhatsApp.</p></div>
+    <div class="section-head"><h2>Nossos cursos em destaque</h2><a class="more" href="/cursos/">Ver todos os cursos →</a></div>
+    <div class="grid cards">${courses.map(c => courseCard(c, 'home')).join('')}</div>
+    <div class="icon-strip" id="sobre">
+      <div>${icon('tool')}<span>Aulas práticas e presenciais</span></div>
+      <div>${icon('chat')}<span>Atendimento humanizado</span></div>
+      <div>${icon('pin')}<span>2 unidades no Rio de Janeiro</span></div>
+      <div>${icon('cap')}<span>Foco no mercado de trabalho</span></div>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="units-band">
   <div class="wrap">
-    <div class="section-head"><div><span class="eyebrow">Unidades</span><h2>Nossas unidades no Rio de Janeiro</h2></div><a class="more" href="/unidades/">Ver unidades →</a></div>
-    <div class="grid c2">${units.map(u => unitCard(u, 'home-unidades')).join('')}</div>
+    <h2>Nossas unidades no Rio de Janeiro</h2>
+    <div class="grid c2">${units.map(unitMini).join('')}</div>
   </div>
 </section>
 ${ctaBand(null, 'home-final')}`,
@@ -275,7 +280,7 @@ ${highlights}
     <button type="button" aria-pressed="true" data-filter="*">Todos</button>
     ${AREAS.map(a => `<button type="button" aria-pressed="false" data-filter="${esc(a)}">${esc(a)}</button>`).join('')}
   </div>
-  <div class="grid c3" id="course-grid">${courses.map(c => courseCard(c, 'cursos')).join('')}</div>
+  <div class="grid cards" id="course-grid">${courses.map(c => courseCard(c, 'cursos')).join('')}</div>
 </div></section>
 ${ctaBand(null, 'cursos-final')}`,
 });
@@ -368,7 +373,7 @@ for (const c of courses) {
 ${ctaBand(c, 'curso-final')}
 <section class="section"><div class="wrap">
   <div class="section-head"><div><span class="eyebrow">Outros cursos</span><h2>Veja também</h2></div></div>
-  <div class="grid c3">${others.map(o => courseCard(o, 'relacionados')).join('')}</div>
+  <div class="grid cards">${others.map(o => courseCard(o, 'relacionados')).join('')}</div>
 </div></section>`,
   });
 }
@@ -406,7 +411,7 @@ for (const u of units) {
 ${u.notes.length ? `<section class="section" style="padding-bottom:0"><div class="wrap">${u.notes.map(n => `<p class="note">${esc(n)}</p>`).join('')}</div></section>` : ''}
 <section class="section" id="cursos"><div class="wrap">
   <div class="section-head"><div><span class="eyebrow">Cursos</span><h2>Cursos em ${esc(u.name)}</h2></div><p>Confirme pelo WhatsApp quais turmas estão com matrículas abertas nesta unidade.</p></div>
-  <div class="grid c3">${courses.map(c => courseCard(c, 'unidade')).join('')}</div>
+  <div class="grid cards">${courses.map(c => courseCard(c, 'unidade')).join('')}</div>
 </div></section>
 ${ctaBand(null, 'unidade-final')}`,
   });
@@ -444,6 +449,20 @@ pages['/matricula/'] = layout({
     </div>
   </div>
 </div></section>`,
+});
+
+pages['/contato/'] = layout({
+  path: '/contato/',
+  title: 'Contato | Carreira+',
+  description: 'Fale com a Carreira+ pelo WhatsApp das unidades de Nova Iguaçu e Campo Grande (RJ).',
+  schema: [orgSchema, crumbsSchema([['Início', '/'], ['Contato', '/contato/']])],
+  body: `
+<section class="phero">
+  <div class="bg">${media(['atendimento', 'cursos-hero'], { icon: 'chat', sizes: '100vw', eager: true })}</div>
+  <div class="wrap">${crumbsHtml([['Início', '/'], ['Contato', '/contato/']])}<h1>Fale com a gente</h1><p class="lead">Tire suas dúvidas, receba orientações e encontre o curso ideal para você.</p></div>
+</section>
+<section class="section"><div class="wrap"><div class="grid c2">${units.map(u => unitCard(u, 'contato')).join('')}</div>
+<p class="small" style="margin-top:18px">Instagram: <a href="https://www.instagram.com/${site.instagram}/" target="_blank" rel="noopener">@${site.instagram}</a></p></div></section>`,
 });
 
 pages['/politica-de-privacidade/'] = layout({
