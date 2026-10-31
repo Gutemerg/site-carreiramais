@@ -11,7 +11,7 @@
 
   // Revela blocos ao rolar (respeita prefers-reduced-motion via CSS)
   // Marca blocos para animar ao rolar e cria efeito cascata entre irmãos
-  document.querySelectorAll('.section-head, .section h2, .icon-strip > div, .units-band h2, .faq details, details, .checklist li, .practice-list > div, .about > *, .cta-band .wrap > *').forEach(function (el) { el.classList.add('reveal'); });
+  document.querySelectorAll('.section-head, .section h2, .blk h2, .icon-strip > div, .units-band h2, .chat-item, .checklist li, .practice-list > div, .about > *, .cta-band .wrap > *').forEach(function (el) { el.classList.add('reveal'); });
   var els = document.querySelectorAll('.reveal');
   els.forEach(function (el) {
     var sibs = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function (c) { return c.classList.contains('reveal'); }) : [];
@@ -81,5 +81,20 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'matricula_whatsapp', course: form.curso.value, unit: form.unidade.value });
     window.open('https://wa.me/' + u.dataset.wa + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  });
+})();
+
+
+// "Esse curso é pra você?" — blocos que acendem ao tocar
+(function () {
+  var items = document.querySelectorAll('.match');
+  if (!items.length) return;
+  var result = document.querySelector('.match-result');
+  items.forEach(function (b) {
+    b.addEventListener('click', function () {
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      var any = document.querySelector('.match[aria-pressed="true"]');
+      if (result) result.hidden = !any;
+    });
   });
 })();

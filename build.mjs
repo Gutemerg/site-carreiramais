@@ -337,48 +337,51 @@ for (const c of courses) {
     </div>
   </div>
 </section>
+<div class="ticker" aria-hidden="true"><div class="ticker-track">${[...Array(2)].map(() => [OFFER ? OFFER.short : null, 'Turmas em Campo Grande e Nova Iguaçu', 'Aulas 100% presenciais', 'Muita prática em sala', 'Atendimento rápido no WhatsApp'].filter(Boolean).map(t => `<span>${icon('tag')} ${esc(t)}</span>`).join('')).join('')}</div></div>
 <nav class="tabs" aria-label="Seções do curso"><div class="wrap">
-  <a href="#sobre">Sobre o curso</a><a href="#aprender">O que você vai aprender</a><a href="#pratica">Parte prática</a><a href="#para-quem">Para quem é</a><a href="#faq">Dúvidas</a>
+  <a href="#sobre">Sobre</a><a href="#aprender">Módulos</a><a href="#pratica">Na prática</a><a href="#para-quem">Pra você?</a><a href="#atuar">Onde atuar</a><a href="#faq">Dúvidas</a>
 </div></nav>
 
-<section class="section" id="sobre"><div class="wrap">
+<section class="blk blk-sobre" id="sobre"><div class="wrap">
+  <span class="bigword" aria-hidden="true">${esc(c.area)}</span>
   <div class="about">
-    <div class="reveal"><span class="eyebrow">Sobre o curso</span><h2>${esc(c.shortName)}</h2><p>${esc(c.about)}</p></div>
-    ${media([`curso-${c.slug}-2`, `curso-${c.slug}`], { icon: c.icon, sizes: '(min-width: 900px) 45vw, 100vw' })}
-  </div>
-  <div class="icons-row">
-    <div>${icon('pin')}Presencial</div>
-    <div>${icon('tool')}Aulas práticas</div>
-    <div>${icon('users')}Turmas presenciais</div>
-    <div>${icon('chat')}Atendimento no WhatsApp</div>
+    <div class="reveal"><span class="pill pill-new">Por dentro do curso</span><h2>${esc(c.shortName)}</h2><p class="lead-dark">${esc(c.about)}</p>
+      <div class="mini-tags"><span>${icon('pin')} Presencial</span><span>${icon('tool')} Prática</span><span>${icon('users')} Turmas</span></div></div>
+    ${media([`curso-${c.slug}-2`, `curso-${c.slug}`], { icon: c.icon, sizes: '(min-width: 900px) 45vw, 100vw', cls: 'tilt' })}
   </div>
 </div></section>
 
-<section class="section gray" id="aprender"><div class="wrap">
-  <div class="learn">
-    <div><span class="eyebrow">Conteúdo</span><h2>O que você vai aprender</h2><ul class="checklist cols">${c.learn.map(l => `<li>${esc(l)}</li>`).join('')}</ul></div>
-    <aside class="side-cta">
-      <h3>Invista no seu futuro</h3>
-      <p>Fale com a unidade mais perto de você e receba datas, duração e valores.</p>
-      ${units.map(u => `<a class="btn btn-light btn-block" ${wa(c, u, 'curso-lateral')}>${waIcon} ${esc(u.name)}</a>`).join('')}
-    </aside>
+<section class="blk blk-modulos" id="aprender">
+  <div class="wrap"><span class="pill pill-red">Conteúdo do curso</span><h2>O que você vai aprender</h2><p class="hint">Arraste para o lado ${icon('arrow')}</p></div>
+  <div class="mod-scroller" tabindex="0" aria-label="Módulos do curso">
+    ${c.learn.map((l, i) => `<article class="mod"><span class="mod-n">${String(i + 1).padStart(2, '0')}</span><h3>${esc(l)}</h3><span class="mod-tag">Módulo</span></article>`).join('')}
+    <article class="mod mod-cta"><h3>Quer o conteúdo completo?</h3><a class="btn btn-red btn-sm" ${wa(c, null, 'curso-modulos')}>${waIcon} Pedir no WhatsApp</a></article>
   </div>
+</section>
+
+<section class="blk blk-pratica" id="pratica"><div class="wrap">
+  <span class="pill pill-light">Na prática</span><h2>Mão na massa durante o curso</h2>
+  <ol class="timeline">${c.practice.map((p, i) => `<li class="reveal"><span class="tl-dot">${i + 1}</span><div class="tl-card"><span class="tl-tag">NA PRÁTICA</span><p>${esc(p)}</p></div></li>`).join('')}</ol>
 </div></section>
 
-<section class="section" id="pratica"><div class="wrap">
-  <span class="eyebrow">Parte prática</span><h2>Mão na massa durante o curso</h2>
-  <div class="practice-list">${c.practice.map(p => `<div class="reveal">${esc(p)}</div>`).join('')}</div>
+<section class="blk blk-pravoce" id="para-quem"><div class="wrap">
+  <span class="pill pill-red">Teste rápido</span><h2>Esse curso é pra você se…</h2><p class="hint">Toque nos que combinam com você</p>
+  <div class="match-grid">${c.audience.map(a => `<button type="button" class="match reveal" aria-pressed="false"><span class="match-ico">${icon('arrow')}</span>${esc(a)}</button>`).join('')}</div>
+  <div class="match-result" hidden><strong>Combina com você!</strong> <a class="btn btn-red btn-sm" href="/matricula/?curso=${c.slug}">Garantir minha vaga ${icon('arrow')}</a></div>
 </div></section>
 
-<section class="section gray" id="para-quem"><div class="wrap grid c2" style="align-items:start">
-  <div class="reveal"><span class="eyebrow">Para quem é</span><h2>Esse curso é para você se…</h2><ul class="checklist">${c.audience.map(a => `<li>${esc(a)}</li>`).join('')}</ul></div>
-  <div class="reveal"><span class="eyebrow">Possibilidades</span><h2>Onde você pode atuar</h2><ul class="checklist">${c.career.map(a => `<li>${esc(a)}</li>`).join('')}</ul>
-    <p class="note" style="margin-top:16px">As oportunidades dependem do mercado e do seu perfil. O curso prepara você com conhecimento e prática para buscar essas áreas.</p></div>
-</div></section>
+<section class="blk blk-atuar" id="atuar">
+  <div class="wrap"><span class="pill pill-dark">Possibilidades</span><h2>Onde você pode atuar</h2></div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track">${[...Array(3)].map(() => c.career.map((a, i) => `<span class="mq ${i % 2 ? 'mq-red' : 'mq-dark'}">${esc(a)}</span>`).join('')).join('')}</div></div>
+  <div class="wrap"><ul class="sr-list">${c.career.map(a => `<li>${esc(a)}</li>`).join('')}</ul>
+  <p class="small">As oportunidades dependem do mercado e do seu perfil. O curso prepara você com conhecimento e prática para buscar essas áreas.</p></div>
+</section>
 
-<section class="section" id="faq"><div class="wrap" style="max-width:820px">
-  <span class="eyebrow">Dúvidas frequentes</span><h2>Perguntas frequentes</h2>
-  ${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><div class="ans">${esc(a)}</div></details>`).join('')}
+<section class="blk blk-faq" id="faq"><div class="wrap" style="max-width:760px">
+  <div class="chat-head">${icon('chat')}<div><strong>Carreira+ responde</strong><span>Toque numa pergunta</span></div></div>
+  <div class="chat">
+    ${faq.map(([q, a]) => `<details class="chat-item"><summary class="bubble bubble-me">${esc(q)}</summary><div class="bubble bubble-them">${esc(a)}</div></details>`).join('')}
+  </div>
 </div></section>
 ${ctaBand(c, 'curso-final')}
 <section class="section"><div class="wrap">
